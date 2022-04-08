@@ -13,7 +13,7 @@ const HttpStatus = {
 };
 
 export const getPatients = (req, res) => {
-  logger.info(`${req.method} ${req.originalurl}, fetching patients`);
+  logger.info(`${req.method} ${req.originalUrl}, fetching patients`);
   database.query(QUERY.SELECT_PATIENTS, (error, results) => {
     if (!results) {
       res
@@ -41,7 +41,7 @@ export const getPatients = (req, res) => {
 };
 
 export const createPatient = (req, res) => {
-  logger.info(`${req.method} ${req.originalurl}, creating patient`);
+  logger.info(`${req.method} ${req.originalUrl}, creating patient`);
   database.query(
     QUERY.CREATE_PATIENT,
     Object.values(req.body),
@@ -79,7 +79,7 @@ export const createPatient = (req, res) => {
 };
 
 export const getPatient = (req, res) => {
-  logger.info(`${req.method} ${req.originalurl}, fetching patient`);
+  logger.info(`${req.method} ${req.originalUrl}, fetching patient`);
   database.query(QUERY.SELECT_PATIENT, [req.params.id], (error, results) => {
     if (!results[0]) {
       res

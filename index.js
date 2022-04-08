@@ -16,12 +16,24 @@ app.use(express.json());
 app.use("/patients", patientRoutes);
 app.get("/", (req, res) =>
   res.send(
-    new Response(HttpStatus.OK.code, HttpStatus.OK.status, "Patient api")
+    new Response(
+      HttpStatus.OK.code,
+      HttpStatus.OK.status,
+      "Patient API, v1.0.0 - All Systems Go"
+    )
   )
 );
 app.all("*", (req, res) =>
   res
     .status(HttpStatus.NOT_FOUND.code)
-    .send(new Response(HttpStatus.NOT_FOUND.code, HttpStatus.NOT_FOUND.status, "route does not exist"))
+    .send(
+      new Response(
+        HttpStatus.NOT_FOUND.code,
+        HttpStatus.NOT_FOUND.status,
+        "Route does not exist on the server"
+      )
+    )
 );
-app.listen(PORT, () => logger.info(`server running on:${PORT}`));
+app.listen(PORT, () =>
+  logger.info(`Server running on: ${ip.address()}:${PORT}`)
+);
